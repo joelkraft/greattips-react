@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 
 import { Link } from "react-router-dom";
 import { getTip } from "../actions/tips";
+
 const mapStateToProps = state => ({
     tips: state.tips.tips
 });

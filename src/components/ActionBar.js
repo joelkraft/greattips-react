@@ -3,6 +3,7 @@ import { PropTypes } from "prop-types";
 import { Link } from 'react-router-dom'
 import { connect } from "react-redux";
 import { toggleUserMenu } from '../actions/profile'
+import UserMenu from "./UserMenu";
 
 const mapStateToProps = state => ({
 
@@ -43,6 +44,7 @@ class ActionBar extends React.Component {
                 <li><Link to="/tips/new">New Tip</Link></li>
                 <li><button onClick={this.props.toggleUserMenu}>User</button></li>
             </ul>
+            <UserMenu />
             </div>
         );
     }

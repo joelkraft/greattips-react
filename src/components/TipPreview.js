@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getTip } from "../actions/tips";
 
-import UserMenu from './UserMenu'
 const mapStateToProps = state => ({
     tips: state.tips.tips
 });
@@ -42,7 +41,6 @@ class TipPreview extends React.Component {
                         .map(({text, id}) => <Link to={`/tips/${id}`} key={id}><li>{text}</li></Link>)}
                 </ul>
                 <ActionBar />
-                <UserMenu />
             </div>
         );
     }

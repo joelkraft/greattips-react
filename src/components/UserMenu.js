@@ -1,70 +1,56 @@
-import React from "react";
-import { PropTypes } from "prop-types";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import React from 'react'
+import { PropTypes } from 'prop-types'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import { clearUser } from '../actions/profile'
+import { clearUser, login, signup } from '../actions/profile'
+
+import LoginSignupForm from './LoginSignupForm'
 
 const mapStateToProps = state => ({
-    isVisible: state.profile.userMenuVisible
-});
+  isVisible: state.profile.userMenuVisible,
+  user: state.profile.userData,
+  errors: state.profile.errors
+})
 const mapDispatchToProps = dispatch => ({
-    logout: () => dispatch(clearUser())
-});
+  logout: () => dispatch(clearUser()),
+  login: loginData => dispatch(login(loginData)),
+  signup: signupData => dispatch(signup(signupData))
+})
 class UserMenu extends React.Component {
-    state = {
-        username: "",
-        password: ""
-    };
+  state = {}
 
-    submit = () => this.props.login(this.state);
+  submit = () => this.props.login(this.state)
 
-    setVal = (label, value) => {
-        this.setState({ [label]: value });
-    };
-    saveUserData() {
-        // this.setState({ isEditing: false });
-        // this.props.handleSaveUserData(this.state.localUserData)
+  setVal = (label, value) => {
+    this.setState({ [label]: value })
+  }
+  saveUserData () {
+    // this.setState({ isEditing: false });
+    // this.props.handleSaveUserData(this.state.localUserData)
+  }
+  cancelEditUserData () {
+    // this.setState({ isEditing: false, localUserData: this.props.userData });
+  }
+  render () {
+    const { isVisible, user, login, logout, signup } = this.props
+    if (isVisible) {
+      return (
+        <div>
+          {this.props.errors.map(err => (
+            <h3 style={{color:'red'}} key={err}>{err}</h3>
+          ))}
+          {user // Check if user is logged in
+            ? <div>
+              <Link to='/profile'>Profile</Link>
+              <button onClick={logout}>Logout</button>
+            </div>
+            : <LoginSignupForm handleLogin={login} handleSignup={signup} />}
+        </div>
+      )
     }
-    cancelEditUserData() {
-        // this.setState({ isEditing: false, localUserData: this.props.userData });
-    }
-    render() {
-        if (this.props.isVisible) {
-            return (
-                <div>
-                    <form
-                        onSubmit={e => {
-                            e.preventDefault();
-                            this.submit();
-                        }}
-                    >
-                        <label htmlFor="username">Username</label>
-                        <input
-                            type="text"
-                            id="username"
-                            value={this.state.username}
-                            onChange={e =>
-                                this.setVal("username", e.target.value)
-                            }
-                        />
-                        <label htmlFor="password">Username</label>
-                        <input
-                            type="password"
-                            id="password"
-                            value={this.state.password}
-                            onChange={e =>
-                                this.setVal("password", e.target.value)
-                            }
-                        />
-                        <button type="submit">Log in</button>
-                    </form>
-                    <button onClick={this.props.logout}>Logout</button>
-                </div>
-            );
-        }
-        return null;
-    }
+    return null
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(UserMenu)
