@@ -50,4 +50,7 @@ class ActionBar extends React.Component {
     }
 }
 
+ActionBar.propTypes = {
+    toggleUserMenu: PropTypes.func.isRequired
+}
 export default connect(mapStateToProps,mapDispatchToProps)(ActionBar);

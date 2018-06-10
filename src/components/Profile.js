@@ -95,4 +95,8 @@ class Profile extends React.Component {
   }
 }
 
+Profile.propTypes = {
+    handleSaveUserData: PropTypes.func.isRequired,
+    userData: PropTypes.object.isRequired
+}
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)

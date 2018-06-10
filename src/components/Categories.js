@@ -6,7 +6,6 @@ import ActionBar from "./ActionBar";
 import { connect } from "react-redux";
 
 import { Link } from "react-router-dom";
-import { getTip } from "../actions/tips";
 
 const mapStateToProps = state => ({
     tips: state.tips.tips
@@ -43,6 +42,10 @@ class Categories extends React.Component {
             </div>
         );
     }
+}
+
+Categories.propTypes = {
+    tips: PropTypes.array
 }
 
 export default connect(mapStateToProps)(Categories);

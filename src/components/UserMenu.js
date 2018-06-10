@@ -53,4 +53,13 @@ class UserMenu extends React.Component {
   }
 }
 
+UserMenu.propTypes = {
+    errors: PropTypes.array,
+    isVisible: PropTypes.bool.isRequired,
+    logout: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
+    signup: PropTypes.func.isRequired,
+    user: PropTypes.object
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(UserMenu)

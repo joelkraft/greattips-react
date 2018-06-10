@@ -77,4 +77,23 @@ class NewTip extends React.Component {
     }
 }
 
+NewTip.propTypes = {
+    userData: PropTypes.shape({
+        email: PropTypes.shape({
+            label: PropTypes.string,
+            value: PropTypes.string
+        }),
+        avatar: PropTypes.shape({
+            label: PropTypes.string,
+            value: PropTypes.string
+        }),
+        name: PropTypes.shape({
+            label: PropTypes.string,
+            value: PropTypes.string
+        })
+    }),
+    tips: PropTypes.array.isRequired,
+    handleSaveNewTip: PropTypes.func.isRequired
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(NewTip);

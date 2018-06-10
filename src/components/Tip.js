@@ -51,4 +51,8 @@ class Tip extends React.Component {
     }
 }
 
+Tip.propTypes = {
+    handleRequestTip: PropTypes.func.isRequired
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(Tip);

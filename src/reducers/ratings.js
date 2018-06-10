@@ -5,9 +5,9 @@ import {
     REQUEST_RATINGS,
     RECEIVE_RATINGS,
     REQUEST_RATINGS_FAILED,
-    REQUEST_DELETE_RATING,
-    RATING_WAS_DELETED,
-    RATING_WAS_NOT_DELETED
+    // REQUEST_DELETE_RATING,
+    // RATING_WAS_DELETED,
+    // RATING_WAS_NOT_DELETED
 } from "../actiontypes/ratings";
 
 const defaultState = {

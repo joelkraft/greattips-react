@@ -15,7 +15,7 @@ class LoginForm extends React.Component {
     const { toggleLoginSignup, handleSubmit } = this.props
     return (<div>
       <p>Don't have an account yet?</p>
-      <a href='#' onClick={toggleLoginSignup}>Sign up</a>
+      <button onClick={toggleLoginSignup}>Sign up</button>
       <form
         onSubmit={e => {
           e.preventDefault()
@@ -43,7 +43,8 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-  toggleLoginSignup: PropTypes.func.isRequired
+  toggleLoginSignup: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 }
 // Proptypes
 // handleSubmit, value, handleChange

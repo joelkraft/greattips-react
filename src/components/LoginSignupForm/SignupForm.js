@@ -15,7 +15,7 @@ class SignupForm extends React.Component {
     const { toggleLoginSignup, handleSubmit } = this.props
     return (<div>
       <p>Already have an account?</p>
-      <a href='#' onClick={toggleLoginSignup}>Login</a>
+      <button onClick={toggleLoginSignup}>Login</button>
       <form
         onSubmit={e => {
           e.preventDefault()
