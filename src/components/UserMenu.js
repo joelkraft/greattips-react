@@ -6,11 +6,11 @@ import { connect } from 'react-redux'
 import { clearUser, login, signup } from '../actions/profile'
 
 import LoginSignupForm from './LoginSignupForm'
+import ErrorMessages from './ErrorMessages'
 
 const mapStateToProps = state => ({
   isVisible: state.profile.userMenuVisible,
-  user: state.profile.userData,
-  errors: state.profile.errors
+  user: state.profile.userData
 })
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(clearUser()),
@@ -37,9 +37,7 @@ class UserMenu extends React.Component {
     if (isVisible) {
       return (
         <div>
-          {this.props.errors.map(err => (
-            <h3 style={{color:'red'}} key={err}>{err}</h3>
-          ))}
+          <ErrorMessages />
           {user // Check if user is logged in
             ? <div>
               <Link to='/profile'>Profile</Link>
@@ -54,7 +52,6 @@ class UserMenu extends React.Component {
 }
 
 UserMenu.propTypes = {
-    errors: PropTypes.array,
     isVisible: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,

@@ -8,7 +8,8 @@ import {
   REQUEST_CLEAR_USER,
   USER_WAS_CLEARED,
   USER_WAS_NOT_CLEARED,
-  TOGGLE_USER_MENU
+  TOGGLE_USER_MENU,
+  REMOVE_ERROR
 } from '../actiontypes/profile'
 
 const defaultState = {
@@ -84,6 +85,11 @@ export default function profile (state = defaultState, action) {
       return {
         ...state,
         userMenuVisible: !state.userMenuVisible
+      }
+      case REMOVE_ERROR:
+      return {
+        ...state,
+        errors: state.errors.filter(err => err.id !== action.id)
       }
     default:
       return state
