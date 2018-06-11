@@ -20,6 +20,7 @@ import Categories from './Categories'
 import TipPreview from './TipPreview'
 import NewTip from './NewTip'
 import Tip from './Tip'
+import ErrorMessages from './ErrorMessages'
 
 import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect'
 
@@ -61,15 +62,18 @@ store.subscribe(() => {
 export default () => {
   return (
     <Provider store={store}>
-      <Router>
-        <Switch>
-          <Route component={TipPreview} path='/categories/:category' />
-          <Route component={Categories} path='/categories' />
-          <Route component={userIsAuthenticated(NewTip)} path='/tips/new' />
-          <Route component={Tip} path='/tips/:id' />
-          <Route path='/profile' component={userIsAuthenticated(Profile)} />
-        </Switch>
-      </Router>
+      <div>
+        <ErrorMessages />
+        <Router>
+          <Switch>
+            <Route component={TipPreview} path='/categories/:category' />
+            <Route component={Categories} path='/categories' />
+            <Route component={userIsAuthenticated(NewTip)} path='/tips/new' />
+            <Route component={Tip} path='/tips/:id' />
+            <Route path='/profile' component={userIsAuthenticated(Profile)} />
+          </Switch>
+        </Router>
+      </div>
     </Provider>
   )
 }

@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import { clearUser, login, signup } from '../actions/profile'
 
 import LoginSignupForm from './LoginSignupForm'
-import ErrorMessages from './ErrorMessages'
 
 const mapStateToProps = state => ({
   isVisible: state.profile.userMenuVisible,
@@ -37,7 +36,6 @@ class UserMenu extends React.Component {
     if (isVisible) {
       return (
         <div>
-          <ErrorMessages />
           {user // Check if user is logged in
             ? <div>
               <Link to='/profile'>Profile</Link>
