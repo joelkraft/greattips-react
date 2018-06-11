@@ -95,8 +95,8 @@ class Ratings extends React.Component {
                             }
                             placeholder="Please leave comments here"
                         />
-                        <button type="Submit">Submit rating</button>
-                        <button type="Cancel" onClick={()=>this.setState(defaultState)}>Cancel</button>
+                        <button type="submit">Submit rating</button>
+                        <button type="button" onClick={()=>this.setState(defaultState)}>Cancel</button>
                     </form>
                 )}
                 {this.props.ratings.filter(
