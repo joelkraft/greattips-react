@@ -15,6 +15,7 @@ import {
   REMOVE_ERROR
 } from '../actiontypes/profile'
 
+import { sendError, removeError } from './errors'
 import { userTemplate } from '../templates'
 import { saveData, loadData, saveUserDataToLocalStorage } from '../localStorage'
 
@@ -82,6 +83,7 @@ export function saveUserData (data, token) {
         dispatch(userDataWasSaved(data))
       })
       .catch(err => {
+        dispatch(sendError(err))
         dispatch(userDataWasNotSaved())
       })
   }
@@ -135,7 +137,8 @@ export function login (data, token) {
       })
       .then(data => dispatch(loginSucceeded(data)))
       .catch(err => {
-        dispatch(loginFailed({ message: err.message, id: nextErrorId() }))
+        dispatch(sendError(err))
+        dispatch()
       })
   }
 }
