@@ -3,12 +3,12 @@ import { PropTypes } from "prop-types";
 
 import { connect } from "react-redux";
 
-import { removeError } from "../../actions/profile";
+import { removeError } from "../../actions/errors";
 
 import ErrorMessage from "./ErrorMessage";
 
 const mapStateToProps = state => ({
-    errors: state.profile.errors
+    errors: state.errors
 });
 
 const mapDispatchToProps = dispatch => ({

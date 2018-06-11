@@ -36,7 +36,13 @@ const userIsAuthenticated = connectedRouterRedirect({
 const loggerMiddleware = createLogger()
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+// Get state from local storage
 const persistedState = loadData('state')
+
+// Refreshing should clear any errors
+delete persistedState.errors
+
 const store = createStore(
   MainReducer,
   persistedState,

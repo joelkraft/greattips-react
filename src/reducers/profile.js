@@ -62,8 +62,7 @@ export default function profile (state = defaultState, action) {
     case LOGIN_FAILED:
       return {
         ...state,
-        checkingLogin: false,
-        errors: [...state.errors, action.err]
+        checkingLogin: false
       }
     case REQUEST_CLEAR_USER:
       return {

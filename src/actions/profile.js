@@ -11,11 +11,10 @@ import {
   REQUEST_CLEAR_USER,
   USER_WAS_CLEARED,
   USER_WAS_NOT_CLEARED,
-  TOGGLE_USER_MENU,
-  REMOVE_ERROR
+  TOGGLE_USER_MENU
 } from '../actiontypes/profile'
 
-import { sendError, removeError } from './errors'
+import { sendError } from './errors'
 import { userTemplate } from '../templates'
 import { saveData, loadData, saveUserDataToLocalStorage } from '../localStorage'
 
@@ -104,8 +103,7 @@ export function loginSucceeded (userData) {
 
 export function loginFailed (err) {
   return {
-    type: LOGIN_FAILED,
-    err
+    type: LOGIN_FAILED
   }
 }
 
@@ -138,7 +136,7 @@ export function login (data, token) {
       .then(data => dispatch(loginSucceeded(data)))
       .catch(err => {
         dispatch(sendError(err))
-        dispatch()
+        dispatch(loginFailed())
       })
   }
 }
@@ -240,12 +238,5 @@ export function clearUser (token) {
 export function toggleUserMenu () {
   return {
     type: TOGGLE_USER_MENU
-  }
-}
-
-export function removeError (id) {
-  return {
-    type: REMOVE_ERROR,
-    id
   }
 }

@@ -14,7 +14,7 @@ export function sendError (err) {
 export function addError (err) {
   return {
     type: ADD_ERROR,
-    message: err.message
+    err
   }
 }
 
