@@ -1,15 +1,19 @@
+// Libs
 import React from 'react'
 import { PropTypes } from 'prop-types'
-
-import ActionBar from './ActionBar'
-
 import { connect } from 'react-redux'
 
+// Components
+import ActionBar from './ActionBar'
+
+// Actions
 import { saveNewTip } from '../actions/tips'
+
 const mapStateToProps = state => ({
   userData: state.profile.userData,
   tips: state.tips.tips
 })
+
 const mapDispatchToProps = dispatch => ({
   handleSaveNewTip: data => dispatch(saveNewTip(data))
 })
@@ -26,7 +30,9 @@ class NewTip extends React.Component {
     super(props)
     this.state = { ...defaultState }
   }
-  updateLocalTipData = (label, value) => {
+
+  updateLocalTipData = label => e => {
+    const { value } = e.target
     this.setState({
       tipData: {
         ...this.state.tipData,
@@ -34,6 +40,7 @@ class NewTip extends React.Component {
       }
     })
   }
+
   saveNewTip = e => {
     e.preventDefault()
     const newTip = {
@@ -46,10 +53,10 @@ class NewTip extends React.Component {
       .handleSaveNewTip(newTip)
       .then(result => this.setState(defaultState))
   }
-  cancelEditUserData () {
-    this.setState({ isEditing: false, localUserData: this.props.userData })
-  }
+
   render () {
+    const { text, category } = this.state.tipData
+
     return (
       <div>
         <h1>New Tip</h1>
@@ -60,16 +67,16 @@ class NewTip extends React.Component {
             id='tipText'
             cols='30'
             rows='10'
-            onChange={e => this.updateLocalTipData('text', e.target.value)}
-            value={this.state.tipData.text}
+            onChange={this.updateLocalTipData('text')}
+            value={text}
           />
           <label htmlFor='tipCategory'>Category</label>
           <input
             type='text'
             name='tipCategory'
             id='tipCategory'
-            onChange={e => this.updateLocalTipData('category', e.target.value)}
-            value={this.state.tipData.category}
+            onChange={this.updateLocalTipData('category')}
+            value={category}
           />
           <button type='Submit'>Submit</button>
         </form>

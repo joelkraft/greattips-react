@@ -1,41 +1,44 @@
-import React from "react";
-import { PropTypes } from "prop-types";
+// Libs
+import React from 'react'
+import { PropTypes } from 'prop-types'
+import { connect } from 'react-redux'
 
-import ActionBar from "./ActionBar";
-
-import { connect } from "react-redux";
-
-import { Link } from "react-router-dom";
+// Components
+import ActionBar from './ActionBar'
+import BackButton from './BackButton'
+import { Link } from 'react-router-dom'
 
 const mapStateToProps = state => ({
-    tips: state.tips.tips
-});
+  tips: state.tips.tips
+})
 
 const TipPreview = props => {
-    const { tips, match } = props;
-    return (
-        <div>
-            <p>
-                <Link to="/categories">{"< Back"}</Link>
-            </p>
-            <h1>Tip Preview</h1>
-            <p>{match.params.category}</p>
-            <ul>
-                {tips
-                    .filter(tip => tip.category === match.params.category)
-                    .map(({ text, id }) => (
-                        <Link to={`/tips/${id}`} key={id}>
-                            <li>{text}</li>
-                        </Link>
-                    ))}
-            </ul>
-            <ActionBar />
-        </div>
-    );
-};
+  const { tips, match } = props
+  const { category } = match.params
+  
+  return (
+    <div>
+      <p>
+        <Link to='/categories'><BackButton /></Link>
+      </p>
+      <h1>Tip Preview</h1>
+      <p>{category}</p>
+      <ul>
+        {tips
+          .filter(tip => tip.category === category)
+          .map(({ text, id }) => (
+            <Link to={`/tips/${id}`} key={id}>
+              <li>{text}</li>
+            </Link>
+          ))}
+      </ul>
+      <ActionBar />
+    </div>
+  )
+}
 
 TipPreview.propTypes = {
-    tips: PropTypes.array.isRequired
-};
+  tips: PropTypes.array.isRequired
+}
 
-export default connect(mapStateToProps)(TipPreview);
+export default connect(mapStateToProps)(TipPreview)

@@ -41,6 +41,7 @@ export function saveNewRating(data, token) {
         return Promise.resolve({json: () => data}) // fakeout to remove when api hooked up
             .then(response => response.json())
             .then(data => dispatch(newRatingWasSaved(data)))
+            .then(result => result.data)
             .catch(err => {
                 dispatch(newRatingWasNotSaved());
                 throw err;

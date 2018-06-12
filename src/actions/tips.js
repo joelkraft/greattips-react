@@ -126,6 +126,7 @@ export function updateTip(tipData, token) {
         return Promise.resolve({json: () => tipData}) // fakeout to remove when api hooked up
             .then(response => response.json())
             .then(data => dispatch(tipWasUpdated(data)))
+            .then(result => result.tip)
             .catch(err => {
                 dispatch(tipWasNotUpdated());
                 throw err;
