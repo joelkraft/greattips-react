@@ -15,35 +15,7 @@ import {
 } from '../actiontypes/profile'
 
 import { sendError } from './errors'
-import { userTemplate } from '../templates'
-import { saveData, loadData, saveUserDataToLocalStorage } from '../localStorage'
-
-const nextErrorId = (() => {
-  let nextId = 0
-  return () => nextId++
-})()
-
-let users = loadData('users')
-
-users = users || [
-  {
-    name: {
-      label: 'Name',
-      value: 'Joel Kraft'
-    },
-    email: {
-      label: 'Email',
-      value: 'joel@kraft.org'
-    },
-    avatar: {
-      label: 'Gravatar',
-      value: 'joel@kraft.org'
-    },
-    password: 'secret',
-    id: 0
-  }
-]
-
+import { store } from '../fakeStore'
 
 export function requestSaveUserData () {
   return {
@@ -75,12 +47,10 @@ export function saveUserData (data, token) {
     //     },
     //     body: JSON.stringify(item)
     // })
-    Promise.resolve({ json: () => data }) // TODO fakeout to remove when api hooked up
+    return Promise.resolve({ json: () => data }) // TODO fakeout to remove when api hooked up
       .then(response => response.json())
-      .then(data => {
-        saveUserDataToLocalStorage(data)
-        dispatch(userDataWasSaved(data))
-      })
+      .then(store.updateUser)
+      .then(data => dispatch(userDataWasSaved(data)))
       .catch(err => {
         dispatch(sendError(err))
         dispatch(userDataWasNotSaved())
@@ -121,15 +91,10 @@ export function login (data, token) {
     Promise.resolve({ json: () => data }) // TODO fakeout to remove when api hooked up
       .then(response => response.json())
       .then(loginData => {
-        const user = users.find(
-          user =>
-            user.email.value === loginData.email &&
-            user.password === loginData.password
-        )
+        console.log(loginData)
+        const user = store.getUser(loginData)
         if (user) {
-          let userData = { ...userTemplate, ...user }
-          delete userData.password
-          return userData
+          return user
         }
         throw new Error('Username or password does not match.')
       })
@@ -173,25 +138,10 @@ export function signup (data, token) {
     // })
     Promise.resolve({ json: () => data }) // TODO fakeout to remove when api hooked up
       .then(response => response.json())
-      .then(signupData => {
-        const userAlreadyExists = users.some(
-          user => user.email === signupData.email
-        )
-        if (userAlreadyExists) {
-          throw new Error('Signup was unsuccessful.')
-        }
-        let userData = {
-          email: { label: 'Email', value: signupData.email },
-          password: signupData.password
-        }
-        users.push({ ...userData })
-        saveData('users', users)
-        delete userData.password
-        return userData
-      })
+      .then(store.saveUser)
       .then(data => dispatch(signupSuccessful(data)))
       .catch(err => {
-        dispatch(signupUnuccessful({ message: err.message, id: nextErrorId() }))
+        dispatch(signupUnuccessful())
       })
   }
 }

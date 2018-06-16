@@ -9,26 +9,13 @@ import {
   USER_WAS_CLEARED,
   USER_WAS_NOT_CLEARED,
   TOGGLE_USER_MENU,
-  REMOVE_ERROR
 } from '../actiontypes/profile'
 
+import { store } from '../fakeStore'
+
 const defaultState = {
-  userData: {
-    name: {
-      label: 'Name',
-      value: 'Joel Kraft'
-    },
-    email: {
-      label: 'Email',
-      value: 'joel@kraft.org'
-    },
-    avatar: {
-      label: 'Gravatar',
-      value: 'joel@kraft.org'
-    }
-  },
-  userMenuVisible: false,
-  errors: []
+  userData: store.init(),
+  userMenuVisible: false
 }
 export default function profile (state = defaultState, action) {
   switch (action.type) {
@@ -41,7 +28,7 @@ export default function profile (state = defaultState, action) {
       return {
         ...state,
         isSaving: false,
-        userData: action.data
+        userData: { ...action.data }
       }
     case USER_DATA_WAS_NOT_SAVED:
       return {
@@ -84,11 +71,6 @@ export default function profile (state = defaultState, action) {
       return {
         ...state,
         userMenuVisible: !state.userMenuVisible
-      }
-      case REMOVE_ERROR:
-      return {
-        ...state,
-        errors: state.errors.filter(err => err.id !== action.id)
       }
     default:
       return state

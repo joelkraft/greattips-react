@@ -1,3 +1,5 @@
+/* * Tip * */
+
 // Libs
 import React from 'react'
 import { PropTypes } from 'prop-types'
@@ -6,13 +8,13 @@ import { connect } from 'react-redux'
 // Components
 import ActionBar from '../ActionBar'
 import Ratings from '../Ratings'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import BackButton from '../BackButton'
-import EditForm from './EditForm'
+import EditTip from './EditTip'
+import Display from './Display'
 
 // Actions
 import { getTip, updateTip } from '../../actions/tips'
-import Display from './Display'
 
 const mapStateToProps = state => ({
   tips: state.tips.tips,
@@ -34,14 +36,28 @@ class Tip extends React.Component {
     isEditing: false
   }
 
-  saveTip = data => {
+  save = data => {
     this.props
-      .handleUpdateTip({ ...this.state.tipData, ...data })
+      .handleUpdateTip({
+        ...this.state.tipData,
+        ...data
+      })
       .then(tipData => this.setState({ isEditing: false, tipData }))
   }
 
+  cancel = () => this.setState({ isEditing: false })
+
+  toggleEditing = () => this.setState({ isEditing: !this.state.isEditing })
+
   render () {
+    const { email } = this.props.user
+    const { id } = this.props.match.params
     const { category, text, authorName, authorEmail } = this.state.tipData
+    const { save, cancel, toggleEditing } = this
+
+    // For tip URLs that don't exist, send to categories
+    if (!text) return <Redirect to='/categories' />
+
     return (
       <div>
         <p>
@@ -50,21 +66,15 @@ class Tip extends React.Component {
           </Link>
         </p>
         {this.state.isEditing
-          ? <EditForm
-            initialState={{ text, category }}
-            submit={this.saveTip}
-            cancel={() => this.setState({ isEditing: false })}
-            />
+          ? <EditTip tipData={{ text, category }} save={save} cancel={cancel} />
           : <Display
-            authorEmail={
-                authorEmail === this.props.user.email.value ? authorEmail : null
-              }
-              text={text}
-              category={category}
-              authorName={authorName}
-              handleClick={() => this.setState({ isEditing: !this.state.isEditing })}
+            authorEmail={authorEmail === email ? authorEmail : null}
+            text={text}
+            category={category}
+            authorName={authorName}
+            handleClick={toggleEditing}
             />}
-        <Ratings tipId={this.props.match.params.id} />
+        <Ratings tipId={id} />
         <ActionBar />
       </div>
     )

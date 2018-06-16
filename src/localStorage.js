@@ -21,15 +21,21 @@ export const saveData = (namespace, data) => {
 
 // TODO: remove this dummy user object
 export const saveUserDataToLocalStorage = data => {
-    let userData = loadData('users')
-    if (userData) {
-        data.password = userData.find(user => user.email.value === data.email.value).password
-      userData = [
-        ...userData.filter(user => user.email.value !== data.email.value),
-        data
-      ]
-    } else {
-      userData = [data]
-    }
-    saveData('users', userData)
+  let userData = loadData('users')
+  if (userData) {
+    userData = [...userData.filter(user => user.id !== data.id), data]
+  } else {
+    userData = [data]
   }
+  saveData('users', userData)
+}
+
+export const addUserDataToLocalStorage = data => {
+  let userData = loadData('users')
+  if (userData) {
+    userData = [...userData, data]
+  } else {
+    userData = [data]
+  }
+  saveData('users', userData)
+}

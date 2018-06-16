@@ -21,6 +21,7 @@ import TipPreview from './TipPreview'
 import NewTip from './NewTip'
 import Tip from './Tip'
 import ErrorMessages from './ErrorMessages'
+import EditFormsy from './Profile/EditProfile'
 
 import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect'
 
@@ -42,7 +43,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const persistedState = loadData('state')
 
 // Refreshing should clear any errors
-delete persistedState.errors
+persistedState && delete persistedState.errors
 
 const store = createStore(
   MainReducer,
@@ -66,6 +67,7 @@ export default () => {
         <ErrorMessages />
         <Router>
           <Switch>
+            <Route component={Categories} exact path='/' />
             <Route component={TipPreview} path='/categories/:category' />
             <Route component={Categories} path='/categories' />
             <Route component={userIsAuthenticated(NewTip)} path='/tips/new' />

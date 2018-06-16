@@ -46,6 +46,6 @@ LoginForm.propTypes = {
   toggleLoginSignup: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired
 }
-// Proptypes
+
 // handleSubmit, value, handleChange
 export default LoginForm

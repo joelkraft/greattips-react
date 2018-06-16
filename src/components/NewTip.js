@@ -46,8 +46,8 @@ class NewTip extends React.Component {
     const newTip = {
       ...this.state.tipData,
       id: this.props.tips.length,
-      authorEmail: this.props.userData.email.value,
-      authorName: this.props.userData.name.value
+      authorEmail: this.props.userData.email,
+      authorName: this.props.userData.name
     }
     this.props
       .handleSaveNewTip(newTip)
