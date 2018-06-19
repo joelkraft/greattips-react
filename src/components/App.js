@@ -8,7 +8,12 @@ import { Provider } from 'react-redux'
 import { loadData, saveData } from '../localStorage'
 
 // Router
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom'
 
 import MainReducer from '../reducers/main'
 // import { fetchUserInfo } from "./actions/user";
@@ -21,8 +26,9 @@ import TipPreview from './TipPreview'
 import NewTip from './NewTip'
 import Tip from './Tip'
 import ErrorMessages from './ErrorMessages'
-import EditFormsy from './Profile/EditProfile'
+import ActionBar from './ActionBar'
 
+import './App.css'
 import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect'
 
 const userIsAuthenticated = connectedRouterRedirect({
@@ -63,17 +69,33 @@ store.subscribe(() => {
 export default () => {
   return (
     <Provider store={store}>
-      <div>
-        <ErrorMessages />
+      <div className='App'>
         <Router>
-          <Switch>
-            <Route component={Categories} exact path='/' />
-            <Route component={TipPreview} path='/categories/:category' />
-            <Route component={Categories} path='/categories' />
-            <Route component={userIsAuthenticated(NewTip)} path='/tips/new' />
-            <Route component={Tip} path='/tips/:id' />
-            <Route path='/profile' component={userIsAuthenticated(Profile)} />
-          </Switch>
+          <div className='main'>
+            <section className='mainWrapper'>
+              <h1>Great Tips</h1>
+              <ErrorMessages />
+              <Switch>
+                <Route
+                  component={() => <Redirect to='/categories' />}
+                  exact
+                  path='/'
+                />
+                <Route component={TipPreview} path='/categories/:category' />
+                <Route component={Categories} path='/categories' />
+                <Route
+                  component={userIsAuthenticated(NewTip)}
+                  path='/tips/new'
+                />
+                <Route component={Tip} path='/tips/:id' />
+                <Route
+                  path='/profile'
+                  component={userIsAuthenticated(Profile)}
+                />
+              </Switch>
+            </section>
+            <ActionBar />
+          </div>
         </Router>
       </div>
     </Provider>

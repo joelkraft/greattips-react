@@ -1,28 +1,35 @@
 .App {
-  text-align: center;
+  font-family: Avenir Next, Arial, Helvetica, sans-serif;
+  padding: .5rem;
+  color: #4e4e4e;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+p {
+  font-size: 1.5rem;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.App-title {
-  font-size: 1.5em;
+.mainWrapper {
+  flex: 1;
 }
 
-.App-intro {
-  font-size: large;
+a {
+  text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+h1 {
+  font-family: Pacifico;
+  color: #42716c;
+  margin-bottom: 1.2em;
+}
+
+h2 {
+  font-size: 2rem;
+  padding: 1em 0;
+  color: #b1b1b1;
 }

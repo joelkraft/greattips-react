@@ -4,7 +4,6 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 
 // Components
-import ActionBar from '../ActionBar'
 import EditProfile from './EditProfile'
 import Display from './Display'
 
@@ -50,7 +49,6 @@ class Profile extends React.Component {
             </button>
             <Display name={name} email={email} />
           </div>}
-        <ActionBar />
       </div>
     )
   }

@@ -1,0 +1,14 @@
+.ActionBar i {
+    font-size: 4em;
+    color: #4173b57d;
+}
+.ActionBar ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.ActionBar li{
+
+}

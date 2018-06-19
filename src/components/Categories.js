@@ -4,8 +4,9 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 
 // Components
-import ActionBar from './ActionBar'
 import { Link } from 'react-router-dom'
+
+import './Categories.css'
 
 const mapStateToProps = state => ({
   tips: state.tips.tips
@@ -31,14 +32,17 @@ class Categories extends React.Component {
     const { tips } = this.props
 
     return (
-      <div>
-        <h1>Categories</h1>
-        {extractCategories(tips).map(category => (
-          <Link to={`/categories/${category}`} key={category}>
-            <p>{category}</p>
-          </Link>
-        ))}
-        <ActionBar />
+      <div className='Categories'>
+        <h2>Categories</h2>
+        <ul className="categories-list">
+          {extractCategories(tips).map(category => (
+            <li className="category">
+              <Link to={`/categories/${category}`} key={category}>
+                <p>{category}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     )
   }

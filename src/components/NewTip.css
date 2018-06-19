@@ -1,0 +1,19 @@
+.new-tip form {
+    display: grid;
+    grid-gap: 2rem;
+    font-size: 1.5em;
+}
+
+.new-tip textarea, .new-tip input {
+    border: 1px solid grey;
+    font-size: 1.3em;
+}
+
+.new-tip button {
+    font-size: 1.3em;
+    background: linear-gradient(40deg, #c0b4ff, #6bb0e6);
+    width: 40%;
+    color: white;
+    border: 1px solid blue;
+    justify-self: center;
+}

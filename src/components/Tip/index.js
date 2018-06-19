@@ -6,7 +6,6 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 
 // Components
-import ActionBar from '../ActionBar'
 import Ratings from '../Ratings'
 import { Link, Redirect } from 'react-router-dom'
 import BackButton from '../BackButton'
@@ -75,7 +74,6 @@ class Tip extends React.Component {
             handleClick={toggleEditing}
             />}
         <Ratings tipId={id} />
-        <ActionBar />
       </div>
     )
   }

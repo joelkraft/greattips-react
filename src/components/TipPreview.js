@@ -4,7 +4,6 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 
 // Components
-import ActionBar from './ActionBar'
 import BackButton from './BackButton'
 import { Link } from 'react-router-dom'
 
@@ -32,7 +31,6 @@ const TipPreview = props => {
             </Link>
           ))}
       </ul>
-      <ActionBar />
     </div>
   )
 }

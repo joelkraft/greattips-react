@@ -3,11 +3,10 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 
-// Components
-import ActionBar from './ActionBar'
-
 // Actions
 import { saveNewTip } from '../actions/tips'
+
+import './NewTip.css'
 
 const mapStateToProps = state => ({
   userData: state.profile.userData,
@@ -58,15 +57,15 @@ class NewTip extends React.Component {
     const { text, category } = this.state.tipData
 
     return (
-      <div>
-        <h1>New Tip</h1>
+      <div className="new-tip">
+        <h2>New Tip</h2>
         <form onSubmit={this.saveNewTip}>
           <label htmlFor='tipText'>Tip Text</label>
           <textarea
             name='tipText'
             id='tipText'
             cols='30'
-            rows='10'
+            rows='5'
             onChange={this.updateLocalTipData('text')}
             value={text}
           />
@@ -80,7 +79,6 @@ class NewTip extends React.Component {
           />
           <button type='Submit'>Submit</button>
         </form>
-        <ActionBar />
       </div>
     )
   }

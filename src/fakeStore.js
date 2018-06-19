@@ -1,6 +1,4 @@
 import {
-  saveData,
-  loadData,
   saveUserDataToLocalStorage,
   addUserDataToLocalStorage
 } from './localStorage'
@@ -37,7 +35,7 @@ export const store = {
   getUser: ({ email, password }) => {
     return removePassword(
       storedUsers.find(
-        user => user.password === password && user.email == email
+        user => user.password === password && user.email === email
       )
     )
   },

@@ -1,9 +1,16 @@
+// Libs
 import React from "react";
 import { PropTypes } from "prop-types";
-import { Link } from 'react-router-dom'
 import { connect } from "react-redux";
-import { toggleUserMenu } from '../actions/profile'
+
+// Components
 import UserMenu from "./UserMenu";
+import { Link } from 'react-router-dom'
+
+// Actions
+import { toggleUserMenu } from '../actions/profile'
+
+import './ActionBar.css'
 
 const mapStateToProps = state => ({
 
@@ -38,11 +45,11 @@ class ActionBar extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="ActionBar">
             <ul>
-                <li><Link to="/categories">Browse</Link></li>
-                <li><Link to="/tips/new">New Tip</Link></li>
-                <li><button onClick={this.props.toggleUserMenu}>User</button></li>
+                <li><button title="Browse"><Link to="/categories"><i class="fas fa-hand-point-up"></i></Link></button></li>
+                <li><button title="New Tip"><Link to="/tips/new"><i class="fas fa-lightbulb"></i></Link></button></li>
+                <li><button title="User" onClick={this.props.toggleUserMenu}><i class="fas fa-user"></i></button></li>
             </ul>
             <UserMenu />
             </div>
