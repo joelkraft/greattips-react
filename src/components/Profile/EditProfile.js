@@ -1,6 +1,7 @@
 import React from 'react'
 import Formsy from 'formsy-react'
 import TextInput from '../FormInputs/TextInput'
+import Button from '../Button'
 
 export default class EditProfileForm extends React.Component {
   state = { canSubmit: false }
@@ -19,6 +20,7 @@ export default class EditProfileForm extends React.Component {
     const { enableButton, disableButton } = this
     
     return (
+      <div className="edit-profile">
       <Formsy
         onValidSubmit={save}
         onValid={enableButton}
@@ -40,9 +42,9 @@ export default class EditProfileForm extends React.Component {
           validationError='This is not a valid email'
           required
         />
-        <button type='submit' disabled={!this.state.canSubmit}>Save</button>
-        <button type='button' onClick={cancel}>Cancel</button>
-      </Formsy>
+        <Button type='submit' disabled={!this.state.canSubmit}>Save</Button>
+        <Button type='button' handler={cancel}>Cancel</Button>
+      </Formsy></div>
     )
   }
 }

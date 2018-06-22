@@ -1,6 +1,9 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 
+import Stars from 'react-star-rating-component'
+import Button from '../Button'
+
 class NewRatingForm extends React.Component {
   state = {
     value: 0,
@@ -13,10 +16,12 @@ class NewRatingForm extends React.Component {
     })
   }
 
+  handleStar = newVal => this.setState({ value: newVal })
+
   render () {
     const { save, cancel } = this.props
     const { value, text } = this.state
-    const { handleChange } = this
+    const { handleChange, handleStar } = this
     return (
       <form
         onSubmit={e => {
@@ -25,23 +30,27 @@ class NewRatingForm extends React.Component {
         }}
       >
         <label>Stars</label>
-        <p>{value}</p>
-        <input
-          type='range'
-          min='0.5'
-          max='5'
-          step='0.5'
-          value={value}
-          onChange={handleChange('value')}
-        />
+        <div className='row'>
+          <Stars
+            name='new-rating'
+            starCount={5}
+            value={value}
+            onStarClick={handleStar}
+            emptyStarColor='rgb(230, 230, 230)'
+            starColor='rgb(165, 160, 97)'
+          />
+          <p>{value}</p>
+        </div>
         <label>Comments</label>
         <textarea
           value={text}
           onChange={handleChange('text')}
           placeholder='Please leave comments here'
         />
-        <button type='submit'>Submit rating</button>
-        <button type='button' onClick={cancel}>Cancel</button>
+        <div className='row'>
+          <Button type='submit'>Submit rating</Button>
+          <Button type='button' handler={cancel}>Cancel</Button>
+        </div>
       </form>
     )
   }

@@ -1,0 +1,10 @@
+.button {
+    font-size: 1.1rem;
+    background: linear-gradient(40deg, #c0b4ff, #6bb0e6);
+    box-shadow: 1px 1px 5px grey;
+    min-width: 4em;
+    color: white;
+    border: 1px solid blue;
+    border-radius: 0.2em;
+    height: 2em;
+}

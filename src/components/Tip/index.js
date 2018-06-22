@@ -8,12 +8,14 @@ import { connect } from 'react-redux'
 // Components
 import Ratings from '../Ratings'
 import { Link, Redirect } from 'react-router-dom'
-import BackButton from '../BackButton'
+import Button from '../Button'
 import EditTip from './EditTip'
 import Display from './Display'
 
 // Actions
 import { getTip, updateTip } from '../../actions/tips'
+
+import './Tip.css'
 
 const mapStateToProps = state => ({
   tips: state.tips.tips,
@@ -51,29 +53,34 @@ class Tip extends React.Component {
   render () {
     const { email } = this.props.user
     const { id } = this.props.match.params
-    const { category, text, authorName, authorEmail } = this.state.tipData
+    const { isEditing, tipData } = this.state
+    const { category, text, authorName, authorEmail } = tipData
     const { save, cancel, toggleEditing } = this
 
     // For tip URLs that don't exist, send to categories
     if (!text) return <Redirect to='/categories' />
 
     return (
-      <div>
-        <p>
-          <Link to={`/categories/${category}`}>
-            <BackButton />
-          </Link>
-        </p>
-        {this.state.isEditing
-          ? <EditTip tipData={{ text, category }} save={save} cancel={cancel} />
-          : <Display
-            authorEmail={authorEmail === email ? authorEmail : null}
-            text={text}
-            category={category}
-            authorName={authorName}
-            handleClick={toggleEditing}
-            />}
-        <Ratings tipId={id} />
+      <div className='Tip'>
+        <Link to={`/categories/${category}`}>
+          <Button />
+        </Link>
+        <section className='main-view'>
+          {isEditing
+            ? <EditTip
+              tipData={{ text, category }}
+              save={save}
+              cancel={cancel}
+              />
+            : <Display
+              authorEmail={authorEmail === email ? authorEmail : null}
+              text={text}
+              category={category}
+              authorName={authorName}
+              handleClick={toggleEditing}
+              />}
+          <Ratings tipId={id} />
+        </section>
       </div>
     )
   }

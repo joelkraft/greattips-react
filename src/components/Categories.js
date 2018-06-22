@@ -34,15 +34,17 @@ class Categories extends React.Component {
     return (
       <div className='Categories'>
         <h2>Categories</h2>
-        <ul className="categories-list">
-          {extractCategories(tips).map(category => (
-            <li className="category">
-              <Link to={`/categories/${category}`} key={category}>
-                <p>{category}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className='categories-wrapper'>
+          <ul className='categories-list'>
+            {extractCategories(tips).map(category => (
+              <li className='category' key={category}>
+                <Link to={`/categories/${category}`}>
+                  <p>{category}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     )
   }

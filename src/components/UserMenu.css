@@ -1,0 +1,35 @@
+.user-menu {
+    position: fixed;
+    top: 50%;
+    right: 2em;
+    bottom: 10%;
+    left: 2em;
+    border: 1px solid #d6d6d6;
+    box-shadow: 4px 4px 5px;
+    border-radius: 1em;
+    background: #ffffff;
+    padding: 2em;
+    font-size: 1.2rem;
+    color: gray;
+}
+
+.user-menu p {
+    font-size: 1.2rem;
+}
+
+.user-menu a {
+    color: gray;
+}
+.user-menu div {
+    display: grid;
+    grid-gap: 2rem;
+}
+
+.user-menu form {
+    display: grid;
+    grid-template-columns: 40% 50%;
+    grid-gap: 1em;
+}
+.user-menu input {
+    border: 1px solid #d6d6d6;
+}

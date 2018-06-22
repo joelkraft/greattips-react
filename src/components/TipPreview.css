@@ -1,26 +1,27 @@
-.Categories .categories-wrapper {
+.Tip-Preview .wrapper {
     height: 66vh;
     border: 1px solid #d6d6d6;
     overflow: scroll;
     border-radius: .4em;
 }
 
-.Categories .categories-list {
+.Tip-Preview .list {
     display: grid;
     grid-template-columns: 100%;
     grid-gap: .5rem;
 }
 
-.Categories .category {
+.Tip-Preview .preview {
     padding: 1em;
     border-bottom: 1px solid #d6d6d6;
     font-size: 1.2rem;
+    color: 
 }
 
-.Categories .category:last-child {
+.Tip-Preview .preview:last-child {
     border-bottom: none;
 }
 
-.Categories li a {
+.Tip-Preview li a {
     color: #4a4a4a;
 }

@@ -1,3 +1,5 @@
+/* * Ratings * */
+
 // Libs
 import React from 'react'
 // import { PropTypes } from "prop-types";
@@ -6,8 +8,9 @@ import { connect } from 'react-redux'
 // Components
 import NewRatingForm from './NewRatingForm'
 import Rating from './Rating'
+import Button from '../Button'
 
-//Actions
+// Actions
 import { saveNewRating } from '../../actions/ratings'
 
 import './Ratings.css'
@@ -55,16 +58,19 @@ class Ratings extends React.Component {
     const { toggleNewRatingForm, buildRatingAndSave } = this
 
     return (
-      <div id='ratings'>
-        <h2>Ratings</h2>
-        {showRatingForm
-          ? <NewRatingForm
+      <div className='ratings'>
+        <section className='header'>
+          <h2>Ratings</h2>
+          {!showRatingForm &&
+            <Button handler={toggleNewRatingForm}>
+              Rate this tip
+            </Button>}
+        </section>
+        {showRatingForm &&
+          <NewRatingForm
             save={buildRatingAndSave}
             cancel={() => this.setState({ showRatingForm: false })}
-            />
-          : <button onClick={toggleNewRatingForm}>
-              Rate this tip
-            </button>}
+          />}
         {ratings.length
           ? <ul>
             {ratings.map((rating, index) => (

@@ -47,9 +47,9 @@ class ActionBar extends React.Component {
         return (
             <div className="ActionBar">
             <ul>
-                <li><button title="Browse"><Link to="/categories"><i class="fas fa-hand-point-up"></i></Link></button></li>
-                <li><button title="New Tip"><Link to="/tips/new"><i class="fas fa-lightbulb"></i></Link></button></li>
-                <li><button title="User" onClick={this.props.toggleUserMenu}><i class="fas fa-user"></i></button></li>
+                <li><button title="Browse"><Link to="/categories"><i className="fas fa-hand-point-up"></i></Link></button></li>
+                <li><button title="New Tip"><Link to="/tips/new"><i className="fas fa-lightbulb"></i></Link></button></li>
+                <li><button title="User" onClick={this.props.toggleUserMenu}><i className="fas fa-user"></i></button></li>
             </ul>
             <UserMenu />
             </div>

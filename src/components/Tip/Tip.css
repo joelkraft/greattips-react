@@ -1,0 +1,55 @@
+.Tip .tip-text {
+    font-size: 1.4rem;
+    padding: 2em;
+    border-top: 1px solid #d6d6d6;
+    border-bottom: 1px solid #d6d6d6;
+    margin: 1em 0 2em;
+    line-height: 2em;
+}
+
+.Tip .category-name {
+    font-weight: 500;
+}
+
+.Tip .display {
+    display: grid;
+    grid-gap: 1em;
+    padding: 2em;
+}
+
+.Tip nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Tip .button {
+    max-width: 7em;
+    justify-self: right;
+}
+
+.Tip .main-view {
+    overflow: scroll;
+    height: 78vh;
+}
+
+.Tip form {
+    display: grid;
+    grid-gap: 1em;
+    font-size: 1.5em;
+    width: 100%;
+    padding-top: 2em;
+}
+
+.Tip input, .Tip textarea {
+    border: 1px solid #d6d6d6;
+    font-size: 1em;
+    width: 97%;
+    padding: 1%;
+}
+
+.Tip .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 2em 2em 1em 2em;
+}

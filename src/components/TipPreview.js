@@ -4,9 +4,15 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 
 // Components
-import BackButton from './BackButton'
+import Button from './Button'
 import { Link } from 'react-router-dom'
 
+import './TipPreview.css'
+
+const shortenText = text => {
+  const boundary = 35
+  return text.length > boundary ? `${text.substr(0, 35)}...` : text
+}
 const mapStateToProps = state => ({
   tips: state.tips.tips
 })
@@ -14,23 +20,22 @@ const mapStateToProps = state => ({
 const TipPreview = props => {
   const { tips, match } = props
   const { category } = match.params
-  
+
   return (
-    <div>
-      <p>
-        <Link to='/categories'><BackButton /></Link>
-      </p>
-      <h1>Tip Preview</h1>
-      <p>{category}</p>
-      <ul>
-        {tips
-          .filter(tip => tip.category === category)
-          .map(({ text, id }) => (
-            <Link to={`/tips/${id}`} key={id}>
-              <li>{text}</li>
-            </Link>
+    <div className='Tip-Preview'>
+      <Link to='/categories'><Button /></Link>
+      <h2>{category}</h2>
+      <div className='wrapper'>
+        <ul className='list'>
+          {tips.filter(tip => tip.category === category).map(({ text, id }) => (
+            <li className='preview' key={id}>
+              <Link to={`/tips/${id}`}>
+                <p>{shortenText(text)}</p>
+              </Link>
+            </li>
           ))}
-      </ul>
+        </ul>
+      </div>
     </div>
   )
 }

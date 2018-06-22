@@ -2,7 +2,9 @@
 import React from 'react'
 import Formsy from 'formsy-react'
 import TextInput from '../FormInputs/TextInput'
+import TextArea from '../FormInputs/TextArea'
 import { PropTypes } from 'prop-types'
+import Button from '../Button'
 
 class EditTip extends React.Component {
   state = { canSubmit: false }
@@ -25,9 +27,10 @@ class EditTip extends React.Component {
         onValidSubmit={save}
         onValid={enableButton}
         onInvalid={disableButton}
+        className='form'
       >
         <label>Tip</label>
-        <TextInput
+        <TextArea
           name='text'
           value={text}
           validations='isExisty'
@@ -42,8 +45,10 @@ class EditTip extends React.Component {
           validationError='Please enter a category for your tip'
           required
         />
-        <button type='submit' disabled={!this.state.canSubmit}>Save</button>
-        <button type='button' onClick={cancel}>Cancel</button>
+        <div className='buttons'>
+          <Button type='submit' disabled={!this.state.canSubmit}>Save</Button>
+          <Button type='button' handler={cancel}>Cancel</Button>
+        </div>
       </Formsy>
     )
   }

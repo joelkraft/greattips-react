@@ -5,13 +5,13 @@
 }
 
 p {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
 
 .main {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 96vh;
 }
 
 .mainWrapper {
@@ -32,4 +32,10 @@ h2 {
   font-size: 2rem;
   padding: 1em 0;
   color: #b1b1b1;
+}
+
+h3 {
+  font-size: 1.3rem;
+  padding: 0 0 1em;
+  font-weight: 500;
 }

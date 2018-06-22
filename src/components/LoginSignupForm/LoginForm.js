@@ -1,6 +1,8 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 
+import Button from '../Button'
+
 class LoginForm extends React.Component {
   state = {
     email: '',
@@ -15,7 +17,7 @@ class LoginForm extends React.Component {
     const { toggleLoginSignup, handleSubmit } = this.props
     return (<div>
       <p>Don't have an account yet?</p>
-      <button onClick={toggleLoginSignup}>Sign up</button>
+      <Button handler={toggleLoginSignup}>Sign up</Button>
       <form
         onSubmit={e => {
           e.preventDefault()
@@ -36,7 +38,7 @@ class LoginForm extends React.Component {
           value={this.state.password}
           onChange={e => this.setVal('password', e.target.value)}
         />
-        <button type='submit'>Log in</button>
+        <Button type='submit'>Log in</Button>
       </form></div>
     )
   }

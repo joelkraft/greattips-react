@@ -12,8 +12,10 @@
 .new-tip button {
     font-size: 1.3em;
     background: linear-gradient(40deg, #c0b4ff, #6bb0e6);
+    box-shadow: 1px 1px 5px grey;
     width: 40%;
     color: white;
     border: 1px solid blue;
     justify-self: center;
+    border-radius: 0.2em;
 }

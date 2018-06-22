@@ -6,9 +6,12 @@ import { connect } from 'react-redux'
 // Components
 import EditProfile from './EditProfile'
 import Display from './Display'
+import Button from '../Button'
 
 // Actions
 import { saveUserData } from '../../actions/profile'
+
+import './Profile.css'
 
 const mapStateToProps = state => ({
   userData: state.profile.userData
@@ -36,7 +39,7 @@ class Profile extends React.Component {
     const { saveUserData, toggleEditing } = this
 
     return (
-      <div>
+      <div className="profile">
         {isEditing
           ? <EditProfile
             save={saveUserData}
@@ -44,10 +47,10 @@ class Profile extends React.Component {
             userData={userData}
             />
           : <div>
-            <button onClick={toggleEditing}>
-              Edit
-            </button>
             <Display name={name} email={email} />
+            <Button handler={toggleEditing}>
+              Edit
+            </Button>
           </div>}
       </div>
     )

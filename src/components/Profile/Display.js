@@ -2,18 +2,12 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 
 const ProfileDisplay = ({ name, email }) => (
-  <table>
-    <tbody>
-      <tr>
-        <td>Name</td>
-        <td>{name}</td>
-      </tr>
-      <tr>
-        <td>Email</td>
-        <td>{email}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div className='display'>
+    <p className='label'>Name</p>
+    <p>{name}</p>
+    <p className='label'>Email</p>
+    <p>{email}</p>
+  </div>
 )
 
 ProfileDisplay.propTypes = {

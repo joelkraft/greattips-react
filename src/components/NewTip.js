@@ -57,7 +57,7 @@ class NewTip extends React.Component {
     const { text, category } = this.state.tipData
 
     return (
-      <div className="new-tip">
+      <div className='new-tip'>
         <h2>New Tip</h2>
         <form onSubmit={this.saveNewTip}>
           <label htmlFor='tipText'>Tip Text</label>
@@ -86,18 +86,8 @@ class NewTip extends React.Component {
 
 NewTip.propTypes = {
   userData: PropTypes.shape({
-    email: PropTypes.shape({
-      label: PropTypes.string,
-      value: PropTypes.string
-    }),
-    avatar: PropTypes.shape({
-      label: PropTypes.string,
-      value: PropTypes.string
-    }),
-    name: PropTypes.shape({
-      label: PropTypes.string,
-      value: PropTypes.string
-    })
+    email: PropTypes.string,
+    name: PropTypes.string
   }),
   tips: PropTypes.array.isRequired,
   handleSaveNewTip: PropTypes.func.isRequired
