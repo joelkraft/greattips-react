@@ -51,7 +51,7 @@ class Tip extends React.Component {
   toggleEditing = () => this.setState({ isEditing: !this.state.isEditing })
 
   render () {
-    const { email } = this.props.user
+    const email = this.props.user ? this.props.user.email : {}
     const { id } = this.props.match.params
     const { isEditing, tipData } = this.state
     const { category, text, authorName, authorEmail } = tipData

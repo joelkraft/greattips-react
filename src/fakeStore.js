@@ -33,11 +33,12 @@ export const store = {
     return removePassword(userWithId)
   },
   getUser: ({ email, password }) => {
-    return removePassword(
+    const user = removePassword(
       storedUsers.find(
         user => user.password === password && user.email === email
       )
     )
+    return user.email ? user : null
   },
   updateUser: update => {
     const updatedStore = storedUsers.map(

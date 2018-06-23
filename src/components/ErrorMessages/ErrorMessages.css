@@ -1,0 +1,26 @@
+.error-messages {
+  position: fixed;
+  top: 5%;
+  left: 3%;
+  right: 3%;
+  display: grid;
+  grid-gap: 1em;
+}
+
+.error-messages .error-message {
+    background: linear-gradient(140deg, #ffc1da, #ea8fb4);
+    border-radius: 1em;
+    border: 1px solid #548e38;
+    padding: 1em;
+    display: flex;
+}
+
+.error-messages .error-message h3 {
+    flex: auto;
+    padding: 0;
+}
+
+.error-messages .error-message button {
+    font-size: 1em;
+    color: #538e39;
+}

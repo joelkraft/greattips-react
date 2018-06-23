@@ -2,44 +2,52 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 
 import Button from '../Button'
+import Formsy from 'formsy-react'
+import TextInput from '../FormInputs/TextInput'
 
 class LoginForm extends React.Component {
   state = {
-    email: '',
-    password: ''
+    canSubmit: false
   }
 
-  setVal = (label, value) => {
-    this.setState({ [label]: value })
+  disableButton = () => {
+    this.setState({ canSubmit: false })
+  }
+
+  enableButton = () => {
+    this.setState({ canSubmit: true })
   }
 
   render () {
     const { toggleLoginSignup, handleSubmit } = this.props
-    return (<div>
-      <p>Don't have an account yet?</p>
-      <Button handler={toggleLoginSignup}>Sign up</Button>
-      <form
-        onSubmit={e => {
-          e.preventDefault()
-          handleSubmit(this.state)
-        }}
-      >
-        <label htmlFor='email'>Email</label>
-        <input
-          type='text'
-          id='email'
-          value={this.state.email}
-          onChange={e => this.setVal('email', e.target.value)}
-        />
-        <label htmlFor='password'>Password</label>
-        <input
-          type='password'
-          id='password'
-          value={this.state.password}
-          onChange={e => this.setVal('password', e.target.value)}
-        />
-        <Button type='submit'>Log in</Button>
-      </form></div>
+    const { enableButton, disableButton } = this
+    return (
+      <div>
+        <p>Don't have an account yet?</p>
+        <Button handler={toggleLoginSignup}>Sign up</Button>
+        <Formsy
+          onValidSubmit={handleSubmit}
+          onValid={enableButton}
+          onInvalid={disableButton}
+        >
+          <label htmlFor='email'>Email</label>
+          <TextInput
+            name='email'
+            validations='isEmail'
+            validationError='Please enter an email address'
+            required
+          />
+          <label htmlFor='password'>Password</label>
+          <TextInput
+            name='password'
+            type='password'
+            validations='isExisty'
+            validationError='You must enter a password'
+            required
+          />
+          <Button type='submit'>Log in</Button>
+        </Formsy>
+      </div>
     )
   }
 }
