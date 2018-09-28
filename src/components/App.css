@@ -39,3 +39,19 @@ h3 {
   padding: 0 0 1em;
   font-weight: 500;
 }
+
+@media screen and (min-width: 900px) {
+  .App {
+    background-color: #b1c0d8;
+    padding: 0;
+    width: 100%;
+  }
+  .App .main {
+    width: 80%;
+    background-color: white;
+    margin: 0 auto;
+    padding: 1em;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+  }
+}
